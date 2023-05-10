@@ -185,3 +185,9 @@ def standard_scale_data(X_train, X_validate):
     # Return scaled data
     return X_train_scaled, X_validate_scaled
 
+
+#encode county:
+#dummy_df = pd.get_dummies(df['county'],
+#                                 )
+#df = pd.concat( [df,dummy_df], axis=1 )
+
