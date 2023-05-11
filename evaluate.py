@@ -158,3 +158,7 @@ def better_than_baseline(y, yhat):
     
     # compare the SSEs and return True if the model's SSE is less than the baseline's SSE
     return model_SSE < baseline_SSE
+
+
+
+

@@ -96,7 +96,6 @@ def data_set():
     
 ## wrangle data to drop nulls, rename columns, remove outliers:
 def wrangle_data(df):
-    # Rename columns
     df = df.rename(columns={
         'bedroomcnt': 'bedrooms',
         'bathroomcnt': 'bathrooms',
@@ -104,9 +103,11 @@ def wrangle_data(df):
         'taxvaluedollarcnt': 'taxvalue',
         'fips': 'county'
     })
-
-    # Filter out rows with large area
+ # Filter out rows with large area and filter out places with zero bathrooms and baths, and with more than 15.
     df = df[df.area < 25_000]
+    df = df[df.yearbuilt > 1890]
+    df = df[(df.bathrooms > 0) & (df.bathrooms < 15) & (df.bedrooms > 0) & (df.bedrooms < 15)]
+
 
     # Drop rows with missing values
     df = df.dropna()
@@ -121,7 +122,6 @@ def wrangle_data(df):
     # Map county codes to names
     county_map = {6037: 'LA', 6059: 'Orange', 6111: 'Ventura'}
     df.county = df.county.map(county_map)
-
     return df
 
 
